@@ -13,7 +13,6 @@ This is the list of commands run to get a ziti environment setup running with do
         #ports:
         #  - 5432:5432
         networks:
-          - ziticontrol
           - zitiblue
         volumes:
           - ./data/db:/var/lib/postgresql/data
@@ -76,6 +75,7 @@ Not needed unless you want to try again without recreating docker
     ziti edge delete config private-postgres-cfg
     ziti edge delete service-policy postgres-dial-policy
     ziti edge delete edge-router-policy public-router-access
+    ziti edge delete service-edge-router-policy blue-router-service-access 
     ziti edge delete identity tunneler-id 
     ziti edge delete identity java-identity
     
@@ -93,8 +93,6 @@ Not needed unless you want to try again without recreating docker
     ziti edge create service-edge-router-policy blue-router-service-access --edge-router-roles "#public-edge-routers" --service-roles "#private-postgres-services"
 
     ziti edge update edge-router ziti-edge-router -a "public-edge-routers"
-    ziti edge update edge-router ziti-fabric-router-br -a "bluerouters"
-    ziti edge update edge-router ziti-private-blue -a "bluerouters"
 
 ### CREATE TUNNELER ID for testing
 

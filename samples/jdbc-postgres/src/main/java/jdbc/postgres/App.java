@@ -46,6 +46,5 @@ public class App {
 		} finally {
 			Ziti.getContexts().forEach(c -> c.destroy());
 		}
-		System.exit(0);
 	}
 }
