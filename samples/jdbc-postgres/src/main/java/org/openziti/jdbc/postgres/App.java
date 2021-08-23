@@ -25,13 +25,11 @@ import org.openziti.Ziti;
 
 public class App {
 	public static void main(String[] args) throws Exception {
-		Ziti.init("c:/temp/java-identity.json", "".toCharArray(), false);
-		
-		String url = "jdbc:postgresql://zitified-postgres/simpledb";
+		String url = "zdbc:postgresql://zitified-postgres/simpledb";
 		Properties props = new Properties();
 		props.setProperty("user", "postgres");
 		props.setProperty("password", "postgres");
-		props.setProperty("socketFactory", "org.openziti.net.ZitiSocketFactory");
+		props.setProperty("ziti-identity", "c:/temp/java-identity.json");
 
 		try {
 			try (Connection conn = DriverManager.getConnection(url, props)) {
@@ -46,6 +44,5 @@ public class App {
 		} finally {
 			Ziti.getContexts().forEach(c -> c.destroy());
 		}
-		System.exit(0);
 	}
 }
